@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Submission Form</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    input[type="text"], input[type="email"], input[type="tel"], textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    input[type="file"] {
+        margin-top: 10px;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Project Submission Form</h2>
+    <form id="projectForm" onsubmit=" sendEmail(); reset(); return false;">
+        <input type="text" name="name" placeholder="Your Name"><br>
+        <input type="text" name="college" placeholder="Your College Name*" required><br>
+        <input type="email" name="email" placeholder="Your Email"><br>
+        <input type="tel" name="phone"  placeholder="Your Phone Number*" required><br>
+        <textarea name="address*" placeholder="Delivery Address*" required></textarea><br>
+        <input type="text" name="projectName" placeholder="Project Or Assignment Name*" required>
+        <label >Select Pages:</label>
+        <select style="background-color: aliceblue;">
+            <option value="">1</option>
+            <option value="">2</option>
+            <option value="">3</option>
+            <option value="">4</option>
+            <option value="">5</option>
+            <option value="">6</option>
+            <option value="">7</option>
+            <option value="">8</option>
+            <option value="">9</option>
+            <option value="">10</option>
+        </select>
+        <label >Days*:</label>
+        <select  style="background-color: aliceblue;">
+            <option value="">1</option>
+            <option value="">2</option>
+            <option value="">3</option>
+            <option value="">4</option>
+            <option value="">5</option>
+        </select>
+        
+             
+        </select>
+        <input type="file" name="file" accept=".pdf"><br>
+        <button type="submit">Submit Now</button>
+    </form>
+</div>
+
+<script src="https://smtpjs.com/v3/smtp.js">
+    document.getElementById('projectForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        // You can perform additional validation here before submitting the form
+        // For now, let's just alert the form data
+        const formData = new FormData(this);
+        for (var pair of formData.entries()) {
+            console.log(pair[0] + ': ' + pair[1]);
+        }
+        alert('Form submitted successfully!');
+        function sendEmail(){
+            Email.send({
+    Host : "smtp.gmail.com",
+    Username : "alexbabu3425@gmail.com",
+    Password : "89532825",
+    To : 'yadavkamlesh3425@gmail.com',
+    From : document.getElementById("email").value,
+    Subject : "This is the subject",
+    Body : "And this is the body"
+}).then(
+  message => alert(message)
+);
+
+
+        }
+        // You can submit the form data to the server using AJAX if needed
+    
+    });
+</script>
+</body>
+</html>
